@@ -16,8 +16,11 @@ namespace Assets.decorator.example1
     {
         public override int Attack()
         {
-            int value = UnityEngine.Random.Range(1, 7); // 1d6
-            return value;
+           // int value = UnityEngine.Random.Range(1, 7); // 1d6
+			int value = 1; // 1d6
+
+
+			return value;
         }
     }
 

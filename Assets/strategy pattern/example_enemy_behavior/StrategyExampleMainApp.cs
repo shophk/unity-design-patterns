@@ -5,6 +5,10 @@ using Assets.strategy_pattern.example;
 public class StrategyExampleMainApp : MonoBehaviour
 {
     List<EnemyBehaviorContext> enemyBehaviors = new List<EnemyBehaviorContext>();
+   
+    //for use the behaviours directly
+    List<IEnemyBehaviour> enemyIBehaviours = new List<IEnemyBehaviour>();
+
     public GameObject spawnPoint;
     public float minX, maxX;
     void Start()
@@ -37,8 +41,10 @@ public class StrategyExampleMainApp : MonoBehaviour
             }
 
             context = new EnemyBehaviorContext(enemyBehavior);
-            enemyBehaviors.Add(context);
-
+           // enemyBehaviors.Add(context);
+           
+            enemyIBehaviours.Add(enemyBehavior);
+           
             yield return new WaitForSeconds(1f);
         }
     }
@@ -46,9 +52,16 @@ public class StrategyExampleMainApp : MonoBehaviour
 
     void Update()
     {
-        for (int i = 0; i < enemyBehaviors.Count; i++)
-        {
-            enemyBehaviors[i].Act();
-        }
+        //for (int i = 0; i < enemyBehaviors.Count; i++)
+        //{
+        //    enemyBehaviors[i].Act();
+        //}
+
+		for (int i = 0; i < enemyIBehaviours.Count; i++)
+		{
+            enemyIBehaviours[i].Attack();
+            enemyIBehaviours[i].Move();
+
+		}
     }
 }
